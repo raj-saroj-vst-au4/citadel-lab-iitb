@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------- secrets --
+# The contact form's SMTP login lives in this file, never in git.
+# See "The contact form" in CLAUDE.md.
+assets/php/mail-config.local.php
+# Any other local-only PHP settings, and environment files.
+*.local.php
+.env
+.env.*
+# Keys and certificates.
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ------------------------------------------------------------- backups --
+# Old copies of the page-builder export in the production web root (also
+# refused by .htaccess). The one worth keeping is tracked explicitly below.
+/index.php.bak-*
+*.bak
+*.orig
+*~
+!/oldsrv/index-pagebuilder-20261104.php.bak
+!/oldsrv/oldindex.html.bak
+
+# ---------------------------------------------------------- local tools --
+# Claude Code's per-user settings (CLAUDE.md itself is tracked).
+.claude/
+# Python, from tools/make_images.py.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# Node, if a tool ever needs it.
+node_modules/
+
+# ------------------------------------------------------------- editors --
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ------------------------------------------------------------------ OS --
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------- run output --
+*.log
+error_log

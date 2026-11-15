@@ -1,0 +1,31 @@
+Options -Indexes
+RewriteEngine On
+
+# Source files that are part of the site but must never be served directly:
+# the content and layout includes, build tools, old versions, backups, notes.
+RewriteRule ^(content|partials|tools|includes|oldsrv|\.claude)(/|$) - [F,L]
+RewriteRule ^assets/php/PHPMailer(/|$) - [F,L]
+RewriteRule ^assets/php/mail-config - [F,L]
+RewriteRule (^|/)(CLAUDE\.md|[^/]*\.bak[^/]*)$ - [F,L]
+
+# Serve /citadel/ and /citadel as index.php
+RewriteRule ^$ index.php [L]
+
+# Clean page addresses: /citadel/people -> people.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)$ $1.php [L]
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Fonts never change; styles and scripts are requested with ?v=<time changed>.
+  <FilesMatch "\.(woff2|css|js)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|jpe?g|svg)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
