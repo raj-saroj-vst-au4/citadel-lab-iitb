@@ -168,7 +168,7 @@ return [
             'role'  => 'Postdoctoral researcher',
             'about' => 'Exploring quantitative finance through data-driven modeling, algorithmic strategies, and computational methods to develop insights for financial markets and investment decision-making.',
             'photo' => 'aryan-bhambu',
-            'link'  => ['GitHub' => 'https://github.com/aryanbhambu'],
+            'link'  => ['Homepage' => 'https://aryanbhambu.github.io/'],
         ],
         'ashish-kela' => [
             'name'  => 'Ashish Kela, CFA',
